@@ -9,7 +9,7 @@ struct node
     struct node *next;
 
 }*head,*temp;
-
+n
 void createlist(int n)
 {
     struct node *newnode;
