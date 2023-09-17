@@ -72,16 +72,28 @@ int searchElement(struct node *head,int value)
 void deleteFromEnd()
 {
     struct node *temp,*del;
-    temp=head;
-
-    while(temp->next->next != NULL)
-    {
+    temp = head;
+    while(temp->next->next != NULL){
         temp = temp->next;
     }
     del = temp->next;
     temp->next = NULL;
     free(del);
+
 }
+
+void deleteByPosition(int pos){
+    struct node *temp,*prev;
+    temp = head;
+    for(int i = 1 ; i < pos ; i++){
+        prev = temp;
+        temp = temp->next;
+    }
+    prev->next = temp->next;
+    free(temp);
+
+}
+
 
 void display(int arr[],int size)
 {
@@ -102,7 +114,7 @@ void display(int arr[],int size)
 int main()
 {
 
-    int size,pos;
+    int size,pos,delPos;
     printf("Enter the size of the List : ");
     scanf("%d",&size);
     int arr[size];
@@ -125,5 +137,9 @@ int main()
     deleteFromEnd();
     display(arr,size);
 
+    printf("Enter what position you want to delete your data : ");
+    scanf("%d",&delPos);
+    deleteByPosition(delPos);
+    display(arr,size);
 
 }
